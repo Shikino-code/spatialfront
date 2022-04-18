@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!--<h3>input : {{ point }}</h3>-->
+    <!--Google Map API-->
     <GmapMap
       :center="center"
       :zoom="8"
@@ -20,29 +20,21 @@
 </template>
 
 <script>
-
-//import axios from "../controller/api.js";
-
 export default {
   name: "GoogleMap",
   props: ["point"],
   data() {
     return {
       markers: [],
-      center: {lat: 18.81446096, lng: 98.98084261},
-      test: "",
-
-      // points:[lat:this,
-      // lng]
+      center: { lat: 13.74622118, lng: 100.5544779 },
     };
   },
   methods: {
-    getData() {
-    },
+    getData() {},
   },
+  //import point from mapage
   created() {
-    this.markers = this.point
-    console.log(this.markers)
+    this.markers = this.point;
   },
 };
 </script>

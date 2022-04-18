@@ -7,7 +7,7 @@
         Given a year input from the user, visualize all the city points of all
         countries.
       </h3>
-      <v-text-field placeholder="Year" v-model ="year"></v-text-field>
+      <v-text-field placeholder="Year" v-model="year"></v-text-field>
       <v-btn color="primary" @click="get5a">Generate Map</v-btn>
       <!--get5b-->
       <h3>Visualize the 50 closest city points to Bangkok.</h3>
@@ -33,14 +33,13 @@
       <!--get5f-->
       <h3>
         Given a year input from the user, visualize all the city points which
-        are considered as “low income” (as specified in column wbinc16_text).
+        are considered as “low income”.
       </h3>
       <v-text-field placeholder="Year" v-model="value"></v-text-field>
       <v-btn color="primary" @click="get5f">Generate Map</v-btn>
     </v-container>
     <v-container>
       <h2>Map</h2>
-      <h2>Your Input is :{{ value }}</h2>
       <GoogleMap :key="componentkey" :point="points" />
     </v-container>
   </div>
@@ -62,71 +61,78 @@ export default {
   }),
   methods: {
     get5a() {
-      //alert("clicked")
       axios.get(`/api/5a/${this.year}`).then((res) => {
-        alert("get5a");
-        console.log(res.data);
         this.points = res.data.map((item) => {
-          return {position:{ lat: item.Geom.points[0].x, lng: item.Geom.points[0].y }};
+          return {
+            position: {
+              lat: item.Geom.points[0].x,
+              lng: item.Geom.points[0].y,
+            },
+          };
         });
-        console.log(res.data);
         this.componentkey += 1;
       });
     },
     get5b() {
-      //alert("clicked")
       axios.get(`/api/5b`).then((res) => {
-        alert("get5b");
         this.points = res.data.map((item) => {
-          return {position:{ lat: item.Geom.points[0].x, lng: item.Geom.points[0].y }};
+          return {
+            position: {
+              lat: item.Geom.points[0].x,
+              lng: item.Geom.points[0].y,
+            },
+          };
         });
-        console.log(res.data);
-        console.log(this.points);
+
         this.componentkey += 1;
       });
     },
     get5c() {
-      //alert("clicked")
       axios.get(`/api/5c`).then((res) => {
-        alert("get5c");
         this.points = res.data.map((item) => {
-          return { position:{ lat: item.Geom.points[0].x, lng: item.Geom.points[0].y } };
+          return {
+            position: {
+              lat: item.Geom.points[0].x,
+              lng: item.Geom.points[0].y,
+            },
+          };
         });
-        console.log(this.points);
-         this.componentkey += 1;
+
+        this.componentkey += 1;
       });
     },
     get5d() {
-      //alert("clicked")
       axios.get(`/api/5d`).then((res) => {
-        console.log(res.data[0][""].points[0].x);
         this.points = res.data[0][""].points.map((item) => {
-          return {position:{lat:item.x,lng:item.y} };
+          return { position: { lat: item.x, lng: item.y } };
         });
-        
-         this.componentkey += 1;
+        this.componentkey += 1;
       });
     },
     get5e() {
-      //alert("clicked")
       axios.get(`/api/5e`).then((res) => {
-        alert("get5a");
         this.points = res.data.map((item) => {
-          return {position:{ lat: item.Geom.points[0].x, lng: item.Geom.points[0].y }};
+          return {
+            position: {
+              lat: item.Geom.points[0].x,
+              lng: item.Geom.points[0].y,
+            },
+          };
         });
-        console.log(res.data);
-         this.componentkey += 1;
+        this.componentkey += 1;
       });
     },
     get5f() {
-      //alert("clicked")
       axios.get(`/api/5f/${this.value}`).then((res) => {
-        alert("get5f");
         this.points = res.data.map((item) => {
-          return {position:{ lat: item.Geom.points[0].x, lng: item.Geom.points[0].y }};
+          return {
+            position: {
+              lat: item.Geom.points[0].x,
+              lng: item.Geom.points[0].y,
+            },
+          };
         });
-        console.log(res.data);
-         this.componentkey += 1;
+        this.componentkey += 1;
       });
     },
   },

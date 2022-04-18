@@ -11,6 +11,7 @@
       ref="fileInput"
       accept=".xlsx"
     />
+    <h3 v-if="upload" >{{upload}}</h3>
 
     <h1>Page for 4)</h1>
     <v-container>
@@ -30,7 +31,6 @@
       <h3>show a historical PM 2.5 values by year.</h3>
       <v-text-field label="Country" v-model="country"></v-text-field>
       <v-btn color="primary" @click="get4c">Get File</v-btn>
-      <h3>country : {{ country }}</h3>
       <!--get4d-->
       <h3>calculate a total of the affected population (in number).</h3>
       <v-text-field label="Year" v-model="year"></v-text-field>
@@ -47,6 +47,7 @@ export default {
     country: "",
     year: "",
     color: "",
+    upload:null
   }),
   methods: {
     onSelectedFile(event) {
@@ -55,27 +56,16 @@ export default {
         let formData = new FormData();
         let blob = new Blob([files], { type: "application/xlsx" });
         formData.set("file", blob);
-        // axios
-        //   .post("", formData, {
-        //     headers: {
-        //       "Content-Type": "multipart/form-data",
-        //     },
-        //   })
-        //   .then((res) => {
-        //     alert("upload successed");
-        //     // window.open(`${axios.defaults.baseURL}/air-pollution/error.log`)
-        //   })
-        //   .catch((err) => {
-        //     this.$refs.fileInput.remove();
-        //     alert("Failed to upload");
-        //   });
+        this.upload = "upload success"
       }
+
     },
 
     // post multiple Lottery image to backend
     // trigger input
     onPickFile() {
       this.$refs.fileInput.click();
+
     },
     get4a() {
       window.open(`${axios.defaults.baseURL}/api/4a`);
@@ -88,7 +78,8 @@ export default {
     },
     get4d() {
       window.open(
-        `${axios.defaults.baseURL}/api/4d/${this.year}/${this.color}`);
+        `${axios.defaults.baseURL}/api/4d/${this.year}/${this.color}`
+      );
     },
   },
 };
