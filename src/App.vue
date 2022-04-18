@@ -6,10 +6,10 @@
       </div>
 
       <v-spacer></v-spacer>
-      <v-btn flat text color="white" to="homepage"
+      <v-btn text color="white" to="homepage"
         ><span>Assignment 4</span></v-btn
       >
-      <v-btn flat text color="white" to="map"><span>Assignment 5</span></v-btn>
+      <v-btn text color="white" to="map"><span>Assignment 5</span></v-btn>
     </v-app-bar>
 
     <v-main>
